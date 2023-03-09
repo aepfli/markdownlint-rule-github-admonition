@@ -1,33 +1,10 @@
-# markdownlint-rule-template
+# markdownlint-rule-github-admonition
 
-A template to easily generate rules for [markdownlint](https://github.com/davidAnson/markdownlint).
-
-If you want to use it, 
-
-1. fork it, copy it, etc.
-2. take a look at the TODOs
-   - [ ] Adapt this Readme
-   - [ ] Adapt [package.json](package.json)
-   - [ ] Adapt [Code of Conduct](./CODE_OF_CONDUCT.md)
-   - [ ] Adapt [rule.js](./rule.js)
-3. Implement your rule in [rule.js](./rule.js) (and write tests based on )
-4. Write tests (you can do this before writing the rule) based on the examples
-    - [example configuration](test/example-test.json)
-    - [example markdwon](test/example-test.md)
-5. When you are done, there is already a GitHub Action for releasing.
-    It needs a secret called `npm_token` for the npm.js-registry.
-
-> **Note**
-> Everything in here should help and guide you.
-> Adapt everything based on your needs.
-> This should help with an initial project setup.
-
-> **Note**
-> Feedback is always welcome
+Ensure proper GitHub admonition.
 
 ## Overview
 
-This section should be used to shortly describe this plugin
+Ensure nicely rendered Warnings and Notes for your markdown files.
 
 ## Installation
 
@@ -35,19 +12,69 @@ Use following command to install
 
 ```console
 # TODO
-npm install <rulename> --save-dev
+npm install markdownlint-rule-github-admonition --save-dev
 ```
 
 ## Configuration
 
-Tags: <tags>
+Rulename: `github-admonition`
 
-Parameters: <parameters>
+Tags: `admonition`
 
-```diff
-Example of what this rule should do.
+Parameters:
+
+* `admonitions`: admonitions we should check for (`string[]`,
+  default `[ "Note", "Warning" ]`)
+* `admonitionStart`: the usual starting string for admonition (`string`,
+  default `"> **"`)
+* `admonitionEnd`: the usual ending string for admonition (`string`,
+  default `"**"`)
+
+Faulty:
+
+```markdown
+> **NOTE:** this will be detected{github-admonition}
+
+> **NOTE:**{github-admonition}
+this will be detected
+
+> **NOTE:**{github-admonition}
+> this will be detected
+
+**NOTE:** this will be detected{github-admonition}
+
+**NOTE** this will be detected{github-admonition}
+
+> **NOTE** this will be detected{github-admonition}
+
+( **NOTE:** this will be detected){github-admonition}
+
+(**NOTE:** this will be detected){github-admonition}
 ```
 
+Correct:
+
+```markdown
+> **Note** this is the correct syntax
+
+> **Note**
+> this is the correct syntax
+```
+
+### rendered comparison
+
+<!-- markdownlint-disable -->
+**NOTE** this will be detected{github-admonition}
+
+**NOTE this will be detected{github-admonition}**
+
+> **NOTE** this will be detected{github-admonition}
+
+( **NOTE:** this will be detected){github-admonition}
+
+> **Note** this is the correct syntax
+
+<!-- markdownlint-enable -->
 ## Usage
 
 For usage with certain tools,

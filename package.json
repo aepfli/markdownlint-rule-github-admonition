@@ -1,7 +1,7 @@
 {
-  "name": "<add the name here>",
-  "version": "0.0.2",
-  "description": "<add a description here>",
+  "name": "markdownlint-rule-github-admonition",
+  "version": "0.0.1",
+  "description": "Ensure proper github markdown admonition",
   "main": "./rule.js",
   "keywords": [
     "markdownlint-rule",
@@ -11,12 +11,12 @@
   ],
   "author": "Simon Schrottner",
   "license": "MIT",
-  "homepage": "<add the link here>",
+  "homepage": "https://github.com/aepfli/markdownlint-rule-github-admonition",
   "repository": {
     "type": "git",
-    "url": "<add the link here>"
+    "url": "https://github.com/aepfli/markdownlint-rule-github-admonition.git"
   },
-  "bugs": "<add the link here>",
+  "bugs": "https://github.com/aepfli/markdownlint-rule-github-admonition/issues",
   "scripts": {
     "test": "ava test/*-tests.js",
     "lint": "npm run lint:es && npm run lint:md",
